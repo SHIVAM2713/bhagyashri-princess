@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Love Me? ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg,#ff9aaf,#ffc3dc,#d9b8ff);
+  text-align: center;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  font-size: 25px;
+  animation: float 7s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.card {
+  background: rgba(255,255,255,0.88);
+  padding: 35px 22px;
+  border-radius: 30px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 10px 40px #a94c8560;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: #e84393;
+  font-size: 30px;
+}
+
+p {
+  color: #9b4776;
+  font-size: 17px;
+}
+
+.gif {
+  font-size: 75px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-12px); }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 30px;
+  min-height: 55px;
+}
+
+button {
+  border: none;
+  padding: 13px 28px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff4f91;
+  color: white;
+  box-shadow: 0 5px 15px #ff4f9170;
+}
+
+#no {
+  background: #aaa;
+  color: white;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+#surprise h1 {
+  font-size: 28px;
+}
+
+.message {
+  line-height: 1.8;
+  color: #a13d75;
+  font-size: 16px;
+}
+
+.crown {
+  font-size: 65px;
+  animation: bounce 1s infinite;
+}
+
+#surprise {
+  animation: appear 1s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: scale(.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div id="question">
+  <div class="gif">🥺💗</div>
+  <h1>You Love Me? ❤️</h1>
+  <p>Are you my favourite person? 🥹</p>
+  <p>Think carefully before answering! 😜</p>
+
+  <div class="buttons">
+    <button id="yes" onclick="showLove()">YES 💗</button>
+    <button id="no">NO 🙈</button>
+  </div>
+</div>
+
+<div id="surprise" class="hidden">
+  <div class="crown">👑</div>
+  <h1>Happy Princess Day!</h1>
+  <h2 style="color:#ff4f91">My Sweet Sister ❤️</h2>
+
+  <div class="message">
+    <p>Dear Sister! 💕</p>
+
+    You are not just my sister,
+    you are one of the most special
+    blessings in my life. 🥹
+
+    <p>Your smile makes everything beautiful.
+    May all your dreams come true and
+    may happiness always follow you.</p>
+
+    You don't need a crown to be a princess,
+    because you are already the queen
+    of our hearts! 👸
+
+    <p>Stay happy, keep smiling and
+    keep shining forever! ✨</p>
+
+    <h2>LOVE YOU SO MUCH! ❤️</h2>
+
+    <h1 style="color:#e84393">
+      BHAGYASHRI 💗
+    </h1>
+
+    <h2>👑 MY FOREVER PRINCESS 👑</h2>
+  </div>
+</div>
+
+</div>
+
+<script>
+const no = document.getElementById("no");
+
+function moveNo() {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 60);
+
+  no.style.position = "fixed";
+  no.style.left = Math.max(5, Math.min(x, window.innerWidth-90)) + "px";
+  no.style.top = Math.max(5, Math.min(y, window.innerHeight-50)) + "px";
+}
+
+no.addEventListener("mouseover", moveNo);
+no.addEventListener("touchstart", function(e) {
+  e.preventDefault();
+  moveNo();
+});
+
+function showLove() {
+  document.getElementById("question").classList.add("hidden");
+  document.getElementById("surprise").classList.remove("hidden");
+  celebrate();
+}
+
+function celebrate() {
+  for(let i=0; i<50; i++) {
+    let heart = document.createElement("div");
+    heart.innerHTML = ["❤️","💗","💖","✨","👑"][Math.floor(Math.random()*5)];
+    heart.className = "heart";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (3+Math.random()*5)+"s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(),8000);
+  }
+}
+
+setInterval(() => {
+  let h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = ["💗","💕","✨","❤️"][Math.floor(Math.random()*4)];
+  h.style.left = Math.random()*100+"vw";
+  h.style.animationDuration = "7s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},500);
+</script>
+
+</body>
+</html>
